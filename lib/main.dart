@@ -10,7 +10,7 @@ void main() {
   runApp(const MyApp());
 }
 
-bool auth = false;
+bool auth = true;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

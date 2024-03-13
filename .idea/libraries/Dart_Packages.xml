@@ -135,6 +135,27 @@
             </list>
           </value>
         </entry>
+        <entry key="sealed_countries">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sealed_countries-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="sealed_currencies">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sealed_currencies-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="sealed_languages">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/sealed_languages-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="sky_engine">
           <value>
             <list>
@@ -198,6 +219,13 @@
             </list>
           </value>
         </entry>
+        <entry key="world_countries">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/world_countries-1.2.0/lib" />
+            </list>
+          </value>
+        </entry>
       </option>
     </properties>
     <CLASSES>
@@ -217,6 +245,9 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/material_color_utilities-0.8.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/meta-1.11.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/path-1.9.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sealed_countries-1.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sealed_currencies-1.2.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/sealed_languages-1.2.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/source_span-1.10.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stack_trace-1.11.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/stream_channel-2.1.2/lib" />
@@ -225,6 +256,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/test_api-0.6.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vector_math-2.1.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/vm_service-13.0.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/world_countries-1.2.0/lib" />
       <root url="file://$USER_HOME$/Downloads/flutter4/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$USER_HOME$/Downloads/flutter4/packages/flutter/lib" />
       <root url="file://$USER_HOME$/Downloads/flutter4/packages/flutter_test/lib" />

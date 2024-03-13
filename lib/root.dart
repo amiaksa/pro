@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:pro/contact.dart';
 
+import 'create.dart';
 import 'home.dart';
 import 'main.dart';
 
@@ -59,7 +60,7 @@ class _RootViewState extends State<RootView> {
                     selected: index == 1,
                     onTap: () {
                       setState(() {
-                        body = Container();
+                        body = CreateScreen();
                         index = 1;
                       });
                     },
