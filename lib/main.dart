@@ -1,16 +1,23 @@
 import 'dart:ui_web';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
+import 'firebase_options.dart';
 import 'root.dart';
 
-void main() {
+Future<void> main() async {
   usePathUrlStrategy();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(const MyApp());
 }
 
-bool auth = true;
+bool auth = false;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -74,7 +81,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(Icons.mosque, size: 100),
+                  Image.asset("assits/mosq.jpeg", height: 400),
                 ],
               ),
             ),

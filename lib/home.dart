@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'chart/bar_chart_sample3.dart';
+import 'chart/line_chart_sample2.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -11,80 +14,89 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("إحصائية السنة الحالية"),
-              IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
-            ],
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    CircleAvatar(
-                        backgroundColor: Colors.green.withAlpha(30),
-                        child: Icon(
-                          Icons.tv,
-                          color: Colors.green,
-                        )),
-                    Column(
-                      children: [
-                        Text("عدد الحملات"),
-                        Text("25",
-                            style: Theme.of(context).textTheme.titleLarge)
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    CircleAvatar(
-                        backgroundColor: Colors.green.withAlpha(30),
-                        child: Icon(
-                          Icons.tv,
-                          color: Colors.green,
-                        )),
-                    Column(
-                      children: [
-                        Text("عدد الحجاج"),
-                        Text("25",
-                            style: Theme.of(context).textTheme.titleLarge)
-                      ],
-                    )
-                  ],
-                ),
-                Row(
-                  children: [
-                    CircleAvatar(
-                        backgroundColor: Colors.green.withAlpha(30),
-                        child: Icon(
-                          Icons.tv,
-                          color: Colors.green,
-                        )),
-                    Column(
-                      children: [
-                        Text("عدد المشرفين"),
-                        Text("25",
-                            style: Theme.of(context).textTheme.titleLarge)
-                      ],
-                    )
-                  ],
-                ),
+                Text("إحصائية السنة الحالية",style: Theme.of(context).textTheme.titleLarge,),
+                IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
               ],
             ),
-          ),
-          Text("عدد الحجاج في الحملة"),
-          Text("عدد الحملات المستفيدة"),
-        ],
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Row(
+                    children: [
+                      CircleAvatar(
+                          backgroundColor: Colors.green.withAlpha(30),
+                          child: Icon(
+                            Icons.tv,
+                            color: Colors.green,
+                          )),
+                      Column(
+                        children: [
+                          Text("عدد الحملات"),
+                          Text("25",
+                              style: Theme.of(context).textTheme.titleLarge)
+                        ],
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                          backgroundColor: Colors.green.withAlpha(30),
+                          child: Icon(
+                            Icons.tv,
+                            color: Colors.green,
+                          )),
+                      Column(
+                        children: [
+                          Text("عدد الحجاج"),
+                          Text("25",
+                              style: Theme.of(context).textTheme.titleLarge)
+                        ],
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      CircleAvatar(
+                          backgroundColor: Colors.green.withAlpha(30),
+                          child: Icon(
+                            Icons.tv,
+                            color: Colors.green,
+                          )),
+                      Column(
+                        children: [
+                          Text("عدد المشرفين"),
+                          Text("25",
+                              style: Theme.of(context).textTheme.titleLarge)
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            Text("عدد الحجاج في الحملة",style: Theme.of(context).textTheme.titleMedium,),
+            SizedBox(
+                height: 300,
+                child: BarChartSample3()),
+            Text("عدد الحملات المستفيدة",style: Theme.of(context).textTheme.titleMedium,),
+            SizedBox(
+                height: 300,
+                child: LineChartSample2())
+          ],
+        ),
       ),
     );
   }
