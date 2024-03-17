@@ -81,43 +81,94 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Text(
+                          'مرحباً بك في',
+                          style: Theme.of(context).textTheme.titleLarge!.merge(
+                              TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 35)),
+                        ),
+                      ],
+                    ),
+                  ),
                   Image.asset("assits/mosq.jpeg", height: 400),
                 ],
               ),
             ),
             Expanded(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Text(
-                    'اسم المستخدم',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  TextFormField(),
-                  Text(
-                    'كلمة المرور',
-                    style: Theme.of(context).textTheme.titleLarge,
-                  ),
-                  TextFormField(
-                    obscureText: show,
-                    decoration: InputDecoration(
-                        prefixIcon: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          show = !show;
-                        });
-                      },
-                      icon: Icon(Icons.remove_red_eye),
-                      color: Colors.black,
-                    )),
-                  ),
-                  ElevatedButton(
-                      onPressed: () {
-                        auth = true;
-                        Navigator.pushNamed(context, '/');
-                      },
-                      child: Text('تسجيل الدخول')),
-                ],
+              child: Container(
+                color: Color(0xffF1F2F7),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'اسم المستخدم',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    SizedBox(
+                        width: 400,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                          ),
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'كلمة المرور',
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    SizedBox(
+                      width: 400,
+                      child: TextFormField(
+                        obscureText: show,
+                        decoration: InputDecoration(
+                            fillColor: Colors.white,
+                            filled: true,
+                            border: UnderlineInputBorder(),
+                            prefixIcon: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  show = !show;
+                                });
+                              },
+                              icon: Icon(Icons.remove_red_eye),
+                              color: Colors.black,
+                            )),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    MaterialButton(
+                        color: Colors.orangeAccent,
+                        onPressed: () {
+                          auth = true;
+                          Navigator.pushNamed(context, '/');
+                        },
+                        child: Container(
+                            alignment: Alignment.center,
+                            width: 300,
+                            child: Text(
+                              'تسجيل الدخول',
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleMedium!
+                                  .merge(TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold)),
+                            ))),
+                  ],
+                ),
               ),
             ),
           ],
