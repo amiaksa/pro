@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pro/firestore_service.dart';
 
 import 'chart/bar_chart_sample3.dart';
 import 'chart/line_chart_sample2.dart';
@@ -11,6 +12,23 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int campaignsCount = 0;
+  int userssCount = 0;
+  // List<CampaignModel> campaigns = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getCounts();
+    // getCampaigns();
+  }
+
+  // getCampaigns() async {
+  //   FireStoreService fireStoreService = FireStoreService();
+  //   campaigns = await fireStoreService.getAllCampaign(true);
+  //   setState(() {});
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +39,10 @@ class _HomeScreenState extends State<HomeScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("إحصائية السنة الحالية",style: Theme.of(context).textTheme.titleLarge,),
+                Text(
+                  "إحصائية السنة الحالية",
+                  style: Theme.of(context).textTheme.titleLarge,
+                ),
                 IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
               ],
             ),
@@ -44,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                         children: [
                           Text("عدد الحملات"),
-                          Text("25",
+                          Text(campaignsCount.toString(),
                               style: Theme.of(context).textTheme.titleLarge)
                         ],
                       )
@@ -78,7 +99,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                         children: [
                           Text("عدد المشرفين"),
-                          Text("25",
+                          Text(campaignsCount.toString(),
                               style: Theme.of(context).textTheme.titleLarge)
                         ],
                       )
@@ -87,17 +108,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            Text("عدد الحجاج في الحملة",style: Theme.of(context).textTheme.titleMedium,),
-            SizedBox(
-                height: 300,
-                child: BarChartSample3()),
-            Text("عدد الحملات المستفيدة",style: Theme.of(context).textTheme.titleMedium,),
-            SizedBox(
-                height: 300,
-                child: LineChartSample2())
+            Text(
+              "عدد الحجاج في الحملة",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(height: 300, child: BarChartSample3([])),
+            Text(
+              "عدد الحملات المستفيدة",
+              style: Theme.of(context).textTheme.titleMedium,
+            ),
+            SizedBox(height: 300, child: LineChartSample2())
           ],
         ),
       ),
     );
+  }
+
+  Future<void> getCounts() async {
+    campaignsCount = await FireStoreService().getCampaignCounts();
+    userssCount = campaignsCount;
+    setState(() {});
   }
 }

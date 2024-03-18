@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'create.dart';
 import 'firestore_service.dart';
 
 class ContactScreen extends StatefulWidget {
@@ -35,7 +36,7 @@ class _ContactScreenState extends State<ContactScreen> {
 
   getCampaigns() async {
     FireStoreService fireStoreService = FireStoreService();
-    campaigns = await fireStoreService.getAllCampaign();
+    campaigns = await fireStoreService.getAllCampaign(true);
     campaignsOrg.clear();
     campaignsOrg.addAll(campaigns);
     setState(() {});
@@ -105,11 +106,18 @@ class _ContactScreenState extends State<ContactScreen> {
                             CircleAvatar(
                               radius: 50,
                               backgroundColor: Colors.green.withAlpha(30),
-                              child: Icon(
-                                Icons.flag,
-                                size: 50,
-                                color: Colors.white,
-                              ),
+                              child: campaign.country != null
+                                  ? CircleAvatar(
+                                      radius: 50,
+                                      backgroundImage: AssetImage(countries
+                                          .firstWhere((element2) =>
+                                              element2.code == campaign.country)
+                                          .icon),
+                                    )
+                                  : Icon(
+                                      Icons.flag,
+                                      color: Colors.white,
+                                    ),
                             ),
                             Text(
                               campaign.name ?? "",
@@ -166,10 +174,20 @@ class _ContactScreenState extends State<ContactScreen> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: CircleAvatar(
                                       backgroundColor: Colors.green,
-                                      child: Icon(
-                                        Icons.flag,
-                                        color: Colors.white,
-                                      ),
+                                      child: element.country != null
+                                          ? CircleAvatar(
+                                              // radius: 50,
+                                              backgroundImage: AssetImage(
+                                                  countries
+                                                      .firstWhere((element2) =>
+                                                          element2.code ==
+                                                          element.country)
+                                                      .icon),
+                                            )
+                                          : Icon(
+                                              Icons.flag,
+                                              color: Colors.white,
+                                            ),
                                     ),
                                   )),
                                   Expanded(

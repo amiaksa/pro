@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'firebase_options.dart';
+import 'firestore_service.dart';
 import 'root.dart';
 
 Future<void> main() async {
@@ -17,7 +18,7 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-bool auth = false;
+bool auth = true;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -70,7 +71,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool show = true;
+
+  @override
+  void dispose() {
+    super.dispose();
+    usernameController.dispose();
+    passwordController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,6 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                         width: 400,
                         child: TextFormField(
+                          controller: usernameController,
                           decoration: InputDecoration(
                             fillColor: Colors.white,
                             filled: true,
@@ -130,6 +142,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     SizedBox(
                       width: 400,
                       child: TextFormField(
+                        controller: passwordController,
                         obscureText: show,
                         decoration: InputDecoration(
                             fillColor: Colors.white,
@@ -151,9 +164,21 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                     MaterialButton(
                         color: Colors.orangeAccent,
-                        onPressed: () {
-                          auth = true;
-                          Navigator.pushNamed(context, '/');
+                        onPressed: () async {
+                          bool res = await FireStoreService().login(
+                              usernameController.text, passwordController.text);
+                          if (res) {
+                            auth = true;
+                            Navigator.pushNamed(context, '/');
+                          } else {
+                            auth = false;
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content:
+                                  Text('خطأ في اسم المستخدم او كلمة المرور'),
+                            ));
+                          }
+
+                          // Navigator.pushNamed(context, '/');
                         },
                         child: Container(
                             alignment: Alignment.center,
