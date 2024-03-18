@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int campaignsCount = 0;
+  int pilgrimssCount = 0;
   int userssCount = 0;
   // List<CampaignModel> campaigns = [];
 
@@ -82,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Column(
                         children: [
                           Text("عدد الحجاج"),
-                          Text("25",
+                          Text(pilgrimssCount.toString(),
                               style: Theme.of(context).textTheme.titleLarge)
                         ],
                       )
@@ -109,12 +110,12 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Text(
-              "عدد الحجاج في الحملة",
+              "عدد الحملات المستفيدة",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: 300, child: BarChartSample3([])),
             Text(
-              "عدد الحملات المستفيدة",
+              "عدد الحجاج في الحملة",
               style: Theme.of(context).textTheme.titleMedium,
             ),
             SizedBox(height: 300, child: LineChartSample2())
@@ -126,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> getCounts() async {
     campaignsCount = await FireStoreService().getCampaignCounts();
+    pilgrimssCount = await FireStoreService().getPilgrimsCounts();
     userssCount = campaignsCount;
     setState(() {});
   }

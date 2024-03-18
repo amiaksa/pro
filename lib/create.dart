@@ -460,18 +460,18 @@ class _CreateScreenState extends State<CreateScreen>
                       PopupMenuButton(
                           child: Text("الترتيب" +
                               " : " +
-                              (descending ? "حسب الأحدث" : "حسب الاقدم")),
+                              (!descending ? "حسب الأحدث" : "حسب الاقدم")),
                           itemBuilder: (context) {
                             return [
                               PopupMenuItem(
                                   onTap: () {
-                                    descending = true;
+                                    descending = false;
                                     getCampaigns(descending: descending);
                                   },
                                   child: Text("حسب الأحدث")),
                               PopupMenuItem(
                                 onTap: () {
-                                  descending = false;
+                                  descending = true;
                                   getCampaigns(descending: descending);
                                 },
                                 child: Text("حسب الاقدم"),

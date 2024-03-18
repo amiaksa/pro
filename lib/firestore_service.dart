@@ -4,11 +4,14 @@ import 'package:pro/create.dart';
 class FireStoreService {
   Future addCampaign(CampaignModel campaignModel) async {
     if (campaignModel.id!.isNotEmpty) {
+      campaignModel.edit = true;
+      campaignModel.updatedAt = Timestamp.now();
       FirebaseFirestore.instance
           .collection("campaign")
           .doc(campaignModel.id)
           .set(campaignModel.tojson());
     } else {
+      campaignModel.edit = false;
       FirebaseFirestore.instance
           .collection("campaign")
           .add(campaignModel.tojson());
@@ -32,6 +35,11 @@ class FireStoreService {
 
   Future<int> getCampaignCounts() async {
     var res = await FirebaseFirestore.instance.collection("campaign").get();
+    return res.docs.length;
+  }
+
+  Future<int> getPilgrimsCounts() async {
+    var res = await FirebaseFirestore.instance.collection("pilgrims").get();
     return res.docs.length;
   }
 
@@ -67,6 +75,8 @@ class CampaignModel {
   String? password;
   String? confirmPassword;
   Timestamp? createdAt;
+  Timestamp? updatedAt;
+  bool edit = false;
 
   String? country;
   CampaignModel(
@@ -79,6 +89,8 @@ class CampaignModel {
       this.userID,
       this.numberL,
       this.createdAt,
+      this.updatedAt,
+      this.edit = false,
       this.phone2,
       this.username,
       this.password,
@@ -91,6 +103,8 @@ class CampaignModel {
         "phone": phone,
         "email": email,
         "name2": name2,
+        "updatedAt": updatedAt,
+        "edit": edit,
         "country": country,
         "createdAt": createdAt,
         "userID": userID,
@@ -109,6 +123,9 @@ class CampaignModel {
         numberL: json["numberL"],
         country: json["country"],
         createdAt: json["createdAt"] ?? Timestamp.now(),
+        updatedAt:
+            json["updatedAt"] == null ? Timestamp.now() : json["updatedAt"],
+        edit: json["edit"] ?? false,
         name2: json["name2"],
         userID: json["userID"],
         phone2: json["phone2"],
