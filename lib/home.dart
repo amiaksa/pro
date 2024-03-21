@@ -15,20 +15,20 @@ class _HomeScreenState extends State<HomeScreen> {
   int campaignsCount = 0;
   int pilgrimssCount = 0;
   int userssCount = 0;
-  // List<CampaignModel> campaigns = [];
+  List<CampaignModel> campaigns = [];
 
   @override
   void initState() {
     super.initState();
     getCounts();
-    // getCampaigns();
+    getCampaigns();
   }
 
-  // getCampaigns() async {
-  //   FireStoreService fireStoreService = FireStoreService();
-  //   campaigns = await fireStoreService.getAllCampaign(true);
-  //   setState(() {});
-  // }
+  getCampaigns() async {
+    FireStoreService fireStoreService = FireStoreService();
+    campaigns = await fireStoreService.getAllCampaign(false);
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   "إحصائية السنة الحالية",
                   style: Theme.of(context).textTheme.titleLarge,
                 ),
-                IconButton(onPressed: () {}, icon: Icon(Icons.notifications))
+                PopupMenuButton(
+                    child:  Icon(Icons.notifications),
+                    itemBuilder: ((context) {
+                  return campaigns.map((e) {
+                   return PopupMenuItem(
+                      child: ListTile(
+                        leading: Text(e.edit?"تعديل":"إضافة"),
+                        title: Text(e.name??""),subtitle: Text(e.edit?e.updatedAt!.toDate().toString():e.createdAt!.toDate().toString()),),
+                    );
+                  }).toList();
+                })),
+
               ],
             ),
             Container(

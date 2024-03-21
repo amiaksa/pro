@@ -18,7 +18,7 @@ Future<void> main() async {
   runApp(const MyApp());
 }
 
-bool auth = true;
+bool auth = false;
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

@@ -76,6 +76,7 @@ class CampaignModel {
   String? confirmPassword;
   Timestamp? createdAt;
   Timestamp? updatedAt;
+  // Timestamp? deletedAt;
   bool edit = false;
 
   String? country;
@@ -90,6 +91,7 @@ class CampaignModel {
       this.numberL,
       this.createdAt,
       this.updatedAt,
+      // this.deletedAt,
       this.edit = false,
       this.phone2,
       this.username,
@@ -104,6 +106,7 @@ class CampaignModel {
         "email": email,
         "name2": name2,
         "updatedAt": updatedAt,
+        // "deletedAt": deletedAt,
         "edit": edit,
         "country": country,
         "createdAt": createdAt,
@@ -123,8 +126,8 @@ class CampaignModel {
         numberL: json["numberL"],
         country: json["country"],
         createdAt: json["createdAt"] ?? Timestamp.now(),
-        updatedAt:
-            json["updatedAt"] == null ? Timestamp.now() : json["updatedAt"],
+        updatedAt: json["updatedAt"] == null ? Timestamp.now() : json["updatedAt"],
+        // deletedAt: json["deletedAt"] == null ? null: json["deletedAt"],
         edit: json["edit"] ?? false,
         name2: json["name2"],
         userID: json["userID"],
